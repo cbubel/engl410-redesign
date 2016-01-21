@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="main.css">
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <h1>Building Your First Chrome Extension</h1>
+        <p>
+          The quick and easy guide for amateur developers
+        </p>
+      </div>
+    </header>
+    <div id="wrapper">
+      <div class="primary-section">
+        <h2>0. Overview</h2>
+        <p>
+          Here is a high level overview of the steps necessary for creating a Chrome extension:
+        </p>
+        <ol>
+          <li>Create a new directory</li>
+          <li>Create and populate the <span class="special">manifest.json</span> file</li>
+          <li>Create the needed HTML and JavaScript files to handle the display and logic of the extension</li>
+          <li>Load the extension into Chrome</li>
+        </ol>
+        <p>
+          We'll go into a bit more detail for each of these steps. Moving on!
+        </p>
+      </div>
+      <div class="primary-section">
+        <h2>1. Required Components</h2>
+        <p>
+          There are a few things necessary for making our Chrome extension, which will be an icon that, when clicked, displays a popup of text. They are:
+        </p>
+        <ol>
+          <li>A new directory (a folder on your computer)</li>
+          <li>A new file called <span class="special">manifest.json</span></li>
+          <li>A new file called <span class="special">popup.html</span></li>
+          <li>A new file called <span class="special">popup.js</span></li>
+        </ol>
+        <p>
+          The directory will contain all of these files, the purposes of which will be explained later. Once you create all of these things, move to the next step.
+        </p>
+      </div>
+      <div class="primary-section">
+        <h2>2. Metadata: Manifest File</h2>
+        <p>
+          In your preferred text editor, open up your manifest.json file and add the following lines:
+        </p>
+        <a href="/manifest_code.png" target="_blank"><img src="/manifest_code.png" alt="Manifest file" /></a>
+        <p>
+          So what are these lines for? They simply provide the basic information about our extension. You can probably guess what the <span class="special">name</span>, <span class="special">description</span>, and <span class="special">version</span> keywords
+          are for.
+        </p>
+        <p>
+          Within the <span class="special">browser_action</span>, we specify the <span class="special">default_icon</span> to be <span class="special">icon.png</span>. This denotes the icon that will show up in our toolbar in Chrome when we load our extension.
+          You'll want to create an image in this directory called <span class="special">icon.png</span> for this purpose. A small image, say 20x20 pixels, would be sufficient. Alternatively, you can use this one <a href="/icon.png"
+          target="_blank">here</a>.
+        </p>
+      </div>
+      <div class="primary-section">
+        <h2>3. Structure: Popup HTML File</h2>
+        <p>
+          The actual structure of our popup will go in the <span class="special">popup.html</span> file. Copy the following code into it:
+        </p>
+        <a href="/html_code.png" target="_blank"><img src="/html_code.png" alt="Popup HTML file" /></a>
+        <p>
+          If you're familiar with HTML, you'll recognize this as the standard skeleton for a webpage. The only notable addition we're interested in is the div with id <span class="special">status</span>. Don't forget to link the <span class="special">popup.js</span>        file in line 5!
+        </p>
+      </div>
+      <div class="primary-section">
+        <h2>4. Logic: Popup JavaScript File</h2>
+        <p>
+          So where does the logic for our little popup go? That's where the <span class="special">popup.js</span> file comes in. Add the following code to it:
+        </p>
+        <a href="js_code.png" target="_blank"><img src="js_code.png" alt="Popup JavaScript file" /></a>
+        <p>
+          The logic for our popup is very simple. We have a convenience function starting at line 1 that will render text on our popup.
+        </p>
+        <p>
+          On line 5 we create a listener which will run when we run our extension. In other words, when we click the icon for our extension, the code within this listener will run. So, it will execute <span class="special">renderStatus("Hello, world!")</span>.
+        </p>
+      </div>
+      <div class="primary-section">
+        <h2>5. Loading the Extension</h2>
+        <p>Now that we have all the required pieces for our extension, we'll want to test it out! This requires loading it into Chrome. To do so:</p>
+        <ol>
+          <li>Visit <span class="special">chrome://extensions</span> in your browser (or open up the Chrome menu by clicking the icon to the far right of the Omnibox and select <span class="special">Extensions</span> under the Tools menu to get to the same
+            place).
+          </li>
+          <li>Ensure that the Developer mode checkbox in the top right-hand corner is checked.</li>
+          <li>Click <span class="special">Load unpacked extension…</span> to pop up a file-selection dialog.</li>
+          <li>Navigate to the directory in which your extension files live, and select it.</li>
+        </ol>
+        <a href="add_extension.png" target="_blank"><img src="add_extension.png" alt="Loading an extension" /></a>
+        <p>
+          If the extension is valid, it'll be loaded up and active right away! If it's invalid, an error message will be displayed at the top of the page.
+        </p>
+      </div>
+      <div class="primary-section">
+        <h2>6. What's next?</h2>
+        <p>
+          Now that you've learned the basic structure of a Chrome Extension, it's time to move on to bigger and better things. Here are some suggestions for where to move next:
+        </p>
+        <ul>
+          <li>The <a href="https://developer.chrome.com/extensions/overview" target="_blank">Chrome Extension Overview</a> backs up a bit, and fills in a lot of detail about extensions' architecture in general, and some specific concepts you'll want to be familiar
+            with going forward. It's the best next step on your journey towards extension mastery.</li>
+          <li>No one writes perfect code on the first try, which means that you'll need to learn about the options available for debugging your creations. Our <a href="https://developer.chrome.com/extensions/tut_debugging" target="_blank">debugging tutorial</a>          is perfect for that, and is well worth carefully reading.</li>
+          <li>Chrome extensions have access to powerful APIs above and beyond what's available on the open web: browser actions are just the tip of the iceberg. Our <a href="https://developer.chrome.com/extensions/api_index" target="_blank">chrome.* APIs documentation</a>          will walk you through each API in turn.</li>
+          <li>Finally, the <a href="https://developer.chrome.com/extensions/devguide" target="_blank">developer's guide</a> has dozens of additional links to pieces of documentation you might be interested in.</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
